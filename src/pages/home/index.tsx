@@ -1,15 +1,16 @@
 import Footer from "@/components/footer";
 import { ROUTER } from "@/constants";
-import { fetchTopUsers, octokitClient } from "@/libs/octokit";
+import { getTopUsers, octokitClient } from "@/libs/octokit";
 import { useState } from "react";
+import { useQuery } from "react-query";
 import { Link, useNavigate } from "react-router-dom";
-import useSWR from "swr";
 
 export default function HomePage() {
   const [searchValue, setSearchValue] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   const navigate = useNavigate();
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
@@ -28,9 +29,9 @@ export default function HomePage() {
       setSubmitting(false);
     }
   }
-  const { data: popularUsers, isLoading } = useSWR(
+  const { data: popularUsers, isLoading } = useQuery(
     "popularUsers",
-    fetchTopUsers
+    getTopUsers
   );
 
   return (

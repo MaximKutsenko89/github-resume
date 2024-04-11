@@ -12,6 +12,7 @@ export default function LanguageLoader({
       <div
         className="language-progress-bar"
         style={{ width: `${value}%` }}
+        data-value={value}
       ></div>
       <div>{value}%</div>
     </div>

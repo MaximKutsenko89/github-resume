@@ -1,5 +1,4 @@
 import { ROUTER } from "@/constants";
-import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 export default function UserNotFound() {

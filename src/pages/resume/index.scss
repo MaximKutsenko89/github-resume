@@ -4,6 +4,9 @@
     font-size: 24px;
     gap: 10px;
     padding: 10px;
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
   &__data {
     color: #990003;

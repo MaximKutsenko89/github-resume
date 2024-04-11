@@ -9,9 +9,19 @@
   height: 10px;
   background-color: #4caf50;
   margin-bottom: 10px;
+  animation: fillProgress 1s ease-in-out forwards;
 }
 
 .language-name {
   font-weight: bold;
   margin-bottom: 5px;
+}
+
+@keyframes fillProgress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: attr(data-value);
+  }
 }

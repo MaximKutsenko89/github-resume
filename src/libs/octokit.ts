@@ -6,7 +6,7 @@ export const octokitClient = new Octokit({
   auth: GITHUB_API_TOKEN,
 });
 
-export async function searchUser(username: string) {
+export async function gethUser(username: string) {
   try {
     const response = await octokitClient.request("GET /users/{username}", {
       username: username,
@@ -21,8 +21,12 @@ export async function searchUser(username: string) {
       }
       return repo.language;
     });
+
     return {
-      repos: [...reposData],
+      mostPopularLastEditedRepos: [...reposData]
+        .filter((repo) => repo.visibility === "public")
+        .sort((a, b) => (b.updated_at! > a.updated_at! ? 1 : -1))
+        .slice(0, 10),
       userData,
       usedProgrammingLanguagesAmount: countLanguages(languages as string[]),
     };
@@ -32,7 +36,7 @@ export async function searchUser(username: string) {
   }
 }
 
-export async function fetchTopUsers() {
+export async function getTopUsers() {
   const response = await octokitClient.request("GET /search/users", {
     q: "followers:>0",
     sort: "followers",
