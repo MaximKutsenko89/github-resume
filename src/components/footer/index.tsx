@@ -1,6 +1,6 @@
+import { ROUTER } from "@/constants";
 import { Link } from "react-router-dom";
 import "./index.scss";
-import { ROUTER } from "@/constants";
 export default function Footer() {
   return (
     <footer className="footer">
