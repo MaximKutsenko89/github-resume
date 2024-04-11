@@ -1,0 +1,85 @@
+@import "./constants.scss";
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  width: 100%;
+  background: #242424;
+  padding: 20px;
+  border-radius: $borderRadius;
+  box-shadow: 5px 5px 10px #242424;
+  @media (max-width: 990px) {
+    max-width: 768px;
+  }
+  @media (max-width: 768px) {
+    padding: 50px 20px;
+  }
+}
+.button {
+  border-radius: $borderRadius;
+  border: 2px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  border: 1px solid;
+  &:hover {
+    border-color: #646cff;
+  }
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+}
+
+.main-title {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+}
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.header {
+  margin-bottom: 20px;
+}
+.input {
+  border: 2px solid #fff;
+  outline: none;
+  padding: 10px;
+  border-radius: $borderRadius;
+  display: block;
+  width: 90%;
+  background: transparent;
+  &:focus {
+    border: 2px solid #646cff;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.search-form {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+.error-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .button {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
