@@ -10,7 +10,6 @@ export default function HomePage() {
   const [submitting, setSubmitting] = useState(false);
 
   const navigate = useNavigate();
-
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
@@ -18,7 +17,7 @@ export default function HomePage() {
       const response = await octokitClient.request("GET /users/{username}", {
         username: searchValue,
       });
-      console.log(response);
+
       if (response.status === 200) {
         setSubmitting(false);
         navigate(ROUTER.RESUME(response.data.login!));

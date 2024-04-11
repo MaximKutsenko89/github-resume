@@ -1,4 +1,5 @@
 import { GITHUB_API_TOKEN } from "@/constants";
+import { countLanguages } from "@/utils";
 import { Octokit } from "@octokit/rest";
 
 export const octokitClient = new Octokit({
@@ -10,8 +11,21 @@ export async function searchUser(username: string) {
     const response = await octokitClient.request("GET /users/{username}", {
       username: username,
     });
+    const { data: reposData } = await octokitClient.repos.listForUser({
+      username,
+    });
     const userData = response.data;
-    return userData;
+    const languages = reposData.map((repo) => {
+      if (repo.language === null) {
+        return "Other";
+      }
+      return repo.language;
+    });
+    return {
+      repos: [...reposData],
+      userData,
+      usedProgrammingLanguagesAmount: countLanguages(languages as string[]),
+    };
   } catch (error) {
     console.error("Error searching for user:", error);
     throw error;
